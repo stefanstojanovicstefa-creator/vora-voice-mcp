@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.vora-ai/voice",
+  "title": "Vora Voice -- Voice for Autonomous AI Agents",
+  "description": "Make phone calls, close deals, book meetings. Full-stack voice AI with conversational onboarding, persistent voice agents, and self-improving call performance. 30+ languages including Arabic, Hindi, Vietnamese.",
+  "version": "0.1.0",
+  "websiteUrl": "https://agent.voicevora.com",
+  "repository": {
+    "url": "https://github.com/vora-ai/vora-voice-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@vora/voice",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "VORA_API_KEY",
+          "description": "Your Vora API key from vora_register. Required unless using x402 payments.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "VORA_API_URL",
+          "description": "Vora API endpoint. Defaults to https://agent.voicevora.com",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        },
+        {
+          "name": "VORA_X402_ENABLED",
+          "description": "Enable x402 USDC payments on Base. Set to 'true' to activate.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

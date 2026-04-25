@@ -1,0 +1,32 @@
+# smithery.yaml -- Smithery.ai configuration for @vora/voice
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      VORA_API_KEY:
+        type: string
+        description: "Your Vora API key from vora_register. Leave empty to use x402 USDC payments."
+      VORA_API_URL:
+        type: string
+        default: "https://agent.voicevora.com"
+        description: "Vora API endpoint."
+      VORA_X402_ENABLED:
+        type: string
+        enum: ["true", "false"]
+        default: "false"
+        description: "Enable x402 USDC payments on Base."
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: "npx",
+      args: ["@vora/voice"],
+      env: {
+        VORA_API_KEY: config.VORA_API_KEY || "",
+        VORA_API_URL: config.VORA_API_URL || "https://agent.voicevora.com",
+        VORA_X402_ENABLED: config.VORA_X402_ENABLED || "false"
+      }
+    })
+
+build:
+  runtime: typescript
