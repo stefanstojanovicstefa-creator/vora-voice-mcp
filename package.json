@@ -54,7 +54,7 @@
   "homepage": "https://agent.voicevora.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vora-ai/vora-voice-mcp"
+    "url": "https://github.com/stefanstojanovicstefa-creator/vora-voice-mcp"
   },
   "publishConfig": {
     "access": "public"
