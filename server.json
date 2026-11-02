@@ -20,7 +20,7 @@
       "environmentVariables": [
         {
           "name": "VORA_API_KEY",
-          "description": "Your Vora API key from vora_register. Required unless using x402 payments.",
+          "description": "Optional legacy/internal API credential sent as X-Agent-Api-Key; not an x402 payment switch.",
           "isRequired": false,
           "format": "string",
           "isSecret": true
@@ -33,8 +33,8 @@
           "isSecret": false
         },
         {
-          "name": "VORA_X402_ENABLED",
-          "description": "Enable x402 USDC payments on Base. Set to 'true' to activate.",
+          "name": "VORA_WALLET_ADDRESS",
+          "description": "Optional free-trial wallet address sent as X-WALLET when no signing key is configured. Does not authorize paid x402 retries.",
           "isRequired": false,
           "format": "string",
           "isSecret": false
