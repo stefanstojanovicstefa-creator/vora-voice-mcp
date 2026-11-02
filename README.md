@@ -43,8 +43,9 @@ Or add to your MCP config:
 
 ## Payment
 
-- **x402 (USDC on Base)**: Zero-friction. Set `VORA_X402_ENABLED=true`.
-- **API Key**: Set `VORA_API_KEY=your_key`. Get key from vora_register.
+- **x402 (USDC on Base)**: When the API responds with HTTP 402, this client can sign a USDC payment authorization and retry **only if `VORA_WALLET_PRIVATE_KEY` is set**. The client does **not** read `VORA_X402_ENABLED`; setting that flag neither enables nor disables paid retries. A configured private key may authorize a payment automatically on a 402 response. Review the payment terms and protect your signing key before using this path.
+- **Free-trial wallet hint**: Setting `VORA_WALLET_ADDRESS` without a private key sends an `X-WALLET` header. It does not sign or retry paid requests.
+- **API key**: `VORA_API_KEY` sends the legacy `X-Agent-Api-Key` header; the client documents this as an internal/admin path, not a replacement for wallet-based payment.
 
 ## Pricing
 
@@ -58,9 +59,13 @@ Or add to your MCP config:
 ## Environment Variables
 
 ```
-VORA_API_URL=https://agent.voicevora.com    # API endpoint (default)
-VORA_API_KEY=vora_ak_...            # API key auth
-VORA_X402_ENABLED=true              # Enable x402 USDC payments
+VORA_API_URL=https://agent.voicevora.com  # API endpoint (default)
+VORA_API_KEY=vora_ak_...                  # Optional legacy/internal API key
+VORA_WALLET_ADDRESS=0x...                 # Optional free-trial wallet hint (without a signing key)
+VORA_X402_NETWORK=base                   # Optional: base (default) or base-sepolia
+
+# Optional paid x402 retries: provide VORA_WALLET_PRIVATE_KEY securely at runtime.
+# Treat the private key as a secret. Never commit it or put it in public MCP config.
 ```
 
 ## Languages
